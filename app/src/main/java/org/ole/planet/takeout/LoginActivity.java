@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                 settingDialog();
             }
         });
-        dbsetup.Setup_db(this.context);
+
 
     }
 
@@ -157,7 +157,10 @@ public class LoginActivity extends AppCompatActivity {
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         dialog.dismiss();
                         EditText serverUrl = dialog.getCustomView().findViewById(R.id.input_server_url);
-                        isServerReachable(serverUrl.getText().toString());    }
+                        if(isServerReachable(serverUrl.getText().toString())){
+                            startSync();
+                        }
+                    }
                 });
         MaterialDialog dialog = builder.build();
         positiveAction = dialog.getActionButton(DialogAction.POSITIVE);
@@ -220,6 +223,10 @@ public class LoginActivity extends AppCompatActivity {
                 });
         AlertDialog alert11 = builder1.create();
         alert11.show();
+    }
+
+    public void startSync(){
+        dbsetup.Setup_db(context);
     }
 
 
