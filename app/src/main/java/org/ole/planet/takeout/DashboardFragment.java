@@ -8,12 +8,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class DashboardFragment extends Fragment {
+
+    //Declaring ImageButtons
     private ImageButton myLibraryImage;
+    private ImageButton myCoursesImage;
+    private ImageButton myMeetUpsImage;
+    private ImageButton myTeamsImage;
+
+    //Declaring TextViews //IS this Required? Because in some xml layouts we dont have an image for example fragment_dashboard.xml
+    //We have to make the TextView clickable and make it go to the next intent
+    private TextView myLibraryTextView;
 
     public DashboardFragment() {
         //init dashboard
@@ -24,7 +34,11 @@ public class DashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-        declareElements(view);
+        //Declaring ImageButtons
+        declareImageButtons(view);
+
+        //Declaring TextViews
+        declareTextViews(view);
 
         myLibraryImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,11 +49,60 @@ public class DashboardFragment extends Fragment {
             }
         });
 
+        myCoursesImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("DF: ", "Clicked myLibrary");
+                Intent intent = new Intent(getActivity() , PDFReaderActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        myMeetUpsImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("DF: ", "Clicked myLibrary");
+                Intent intent = new Intent(getActivity() , PDFReaderActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        myTeamsImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("DF: ", "Clicked myLibrary");
+                Intent intent = new Intent(getActivity() , PDFReaderActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        //TextViews Clickable
+
+        myLibraryTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity() , PDFReaderActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
-    private void declareElements(View view) {
+    private void declareImageButtons(View view) {
         // Imagebuttons
         myLibraryImage = (ImageButton) view.findViewById(R.id.myLibrary);
+        myCoursesImage = (ImageButton) view.findViewById(R.id.myCourses);
+        myMeetUpsImage = (ImageButton) view.findViewById(R.id.myMeetUps);
+        myTeamsImage = (ImageButton) view.findViewById(R.id.myTeams);
     }
+
+
+    private void declareTextViews(View view) {
+        // TextViews
+        myLibraryTextView = view.findViewById(R.id.textView6);
+    }
+
+
 }
